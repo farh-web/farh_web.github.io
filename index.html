@@ -30,7 +30,683 @@
         <!-- Dans la section <head> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
     </head>
+<style>
+    
+/*** Spinner Start ***/
+#spinner {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .8s ease-out, visibility 0s linear .5s;
+    z-index: 99999;
+ }
 
+ #spinner.show {
+     transition: opacity .8s ease-out, visibility 0s linear .0s;
+     visibility: visible;
+     opacity: 1;
+ }
+/*** Spinner End ***/
+
+.back-to-top {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    display: flex;
+    width: 45px;
+    height: 45px;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s;
+    z-index: 99;
+}
+
+/*** Button Start ***/
+.btn {
+    font-weight: 600;
+    transition: .5s;
+}
+
+.btn-square {
+    width: 32px;
+    height: 32px;
+}
+
+.btn-sm-square {
+    width: 34px;
+    height: 34px;
+}
+
+.btn-md-square {
+    width: 44px;
+    height: 44px;
+}
+
+.btn-lg-square {
+    width: 56px;
+    height: 56px;
+}
+
+.btn-square,
+.btn-sm-square,
+.btn-md-square,
+.btn-lg-square {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: normal;
+}
+
+.btn-primary-outline-0 {
+    border: 0;
+    color: var(--bs-white) !important;
+}
+
+.btn-light-outline-0 {
+    border: 0;
+    color: var(--bs-primary) !important;
+}
+
+.btn-primary-outline-0:hover {
+    background: var(--bs-secondary) !important;
+    color: var(--bs-white) !important;
+}
+
+.btn-light-outline-0:hover {
+    background: var(--bs-secondary) !important;
+    color: var(--bs-white) !important;
+}
+
+/*** Topbar Start ***/
+.sticky-top {
+    transition: 0.5s;
+    background: var(--bs-white);
+}
+
+.topbar {
+    padding: 10px 0;
+    background: var(--bs-secondary) !important;
+}
+
+/*** Topbar End ***/
+
+/*** Navbar Start ***/
+.navbar .navbar-nav .nav-link {
+    padding: 10px 15px;
+    font-size: 16px;
+    transition: .5s;
+}
+
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link.active,
+.sticky-top.bg-white .navbar .navbar-nav .nav-link:hover,
+.sticky-top.bg-white .navbar .navbar-nav .nav-link.active {
+    color: var(--bs-primary);
+}
+
+.navbar .dropdown-toggle::after {
+    border: none;
+    content: "\f107";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 700;
+    vertical-align: middle;
+    margin-left: 8px;
+}
+
+@media (min-width: 1200px) {
+    .navbar .nav-item .dropdown-menu {
+        display: block;
+        visibility: hidden;
+        top: 100%;
+        transform: rotateX(-75deg);
+        transform-origin: 0% 0%;
+        border: 0;
+        transition: .5s;
+        opacity: 0;
+    }
+}
+
+.dropdown .dropdown-menu a:hover {
+    background: var(--bs-secondary);
+    color: var(--bs-primary);
+}
+
+.navbar .nav-item:hover .dropdown-menu {
+    transform: rotateX(0deg);
+    visibility: visible;
+    background: var(--bs-light) !important;
+    border-radius: 10px !important;
+    transition: .5s;
+    opacity: 1;
+}
+
+@media (min-width: 1200px) {
+    .navbar .navbar-collapse .border-top {
+        border-top: none !important;
+    }
+}
+
+#searchModal .modal-content {
+    background: rgba(250, 250, 250, .6);
+}
+/*** Navbar End ***/
+
+/*** Carousel Start ***/
+.carousel-item {
+    position: relative;
+    min-height: 100vh
+    
+}
+
+.carousel-item img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-item .carousel-caption {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(rgba(255, 255, 255, .5), rgba(255, 255, 255, 0.5));
+    background-size: cover;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    opacity: 0;
+}
+
+.carousel-control-prev .carousel-control-prev-icon,
+.carousel-control-next .carousel-control-next-icon {
+    background: transparent;
+}
+
+#carouselId .carousel-indicators {
+    padding-bottom: 30px;
+}
+
+#carouselId .carousel-indicators li {
+    border-top: 10px solid var(--bs-white);
+    border-bottom: 10px solid var(--bs-white);
+    border-right: 5px solid var(--bs-white);
+    border-left: 5px solid var(--bs-white);
+    margin-right: 10px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+#carouselId .carousel-indicators li.active {
+    background: var(--bs-primary);
+    border-color: var(--bs-primary);
+    border-right: 15px solid var(--bs-primary);
+    border-left: 15px solid var(--bs-primary);
+}
+/*** Carousel End ***/
+
+
+.bg-breadcrumb {
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../img/appointment-background.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/*** Services Start ***/
+.services .services-item {
+    transition: 0.5s;
+}
+
+.services .services-item:hover {
+    background: var(--bs-primary) !important;
+    border-color: var(--bs-secondary) !important;
+}
+
+.services .services-item:hover .services-content p,
+.services .services-item:hover .services-content h3 {
+    color: var(--bs-white);
+    transition: 0.5s;
+}
+
+.services .services-item:hover .services-content a.btn {
+    background: var(--bs-white);
+    color: var(--bs-primary) !important;
+}
+
+.services .services-item:hover .services-content a.btn:hover {
+    color: var(--bs-white) !important;
+}
+
+.services .services-item .services-img {
+    overflow: hidden;
+}
+
+.services .services-item .services-img img {
+    transition: 0.5s;
+}
+
+.services .services-item .services-img img:hover {
+    transform: scale(1.3);
+}
+/*** Services End ***/
+
+
+
+/*** About Start ***/
+/*** Youtube Video start ***/
+.video {
+    position: relative;
+    padding-right: 70px; 
+    padding-bottom: 70px;
+    border-radius: 10px;
+}
+
+.video .btn-play {
+    position: absolute;
+    z-index: 3;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -45%);
+    margin-left: -35px;
+    box-sizing: content-box;
+    display: block;
+    width: 32px;
+    height: 44px;
+    border-radius: 50%;
+
+}
+
+.video .btn-play:before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    display: block;
+    width: 100px;
+    height: 100px;
+    background: var(--bs-secondary);
+    border-radius: 50%;
+    animation: pulse-border 1500ms ease-out infinite;
+}
+
+.video .btn-play:after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    width: 100px;
+    height: 100px;
+    background: var(--bs-primary);
+    border-radius: 50%;
+    transition: all 200ms;
+}
+
+.video .btn-play span {
+    display: block;
+    position: relative;
+    z-index: 3;
+    width: 0;
+    height: 0;
+    border-left: 32px solid var(--bs-white);
+    border-top: 22px solid transparent;
+    border-bottom: 22px solid transparent;
+}
+
+@keyframes pulse-border {
+    0% {
+        transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1.5);
+        opacity: 0;
+    }
+}
+
+#videoModal {
+    z-index: 99999;
+}
+
+#videoModal .modal-dialog {
+    position: relative;
+    max-width: 800px;
+    margin: 60px auto 0 auto;
+}
+
+#videoModal .modal-body {
+    position: relative;
+    padding: 0px;
+}
+
+#videoModal .close {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: 0px;
+    top: -30px;
+    z-index: 999;
+    font-size: 30px;
+    font-weight: normal;
+    color: #ffffff;
+    background: #000000;
+    opacity: 1;
+}
+/*** Youtube Video End ***/
+/*** About End ***/
+
+
+/*** Appointment  Start ***/
+.appointment {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/appointment-background.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.appointment .appointment-form {
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, .4));
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.appointment .appointment-time {
+    background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, .2));
+    object-fit: cover;
+    border-radius: 10px;
+}
+/*** Appointment End ***/
+
+/*** Counter Start ***/
+.counter-section .counter-item .counter-content {
+    position: relative;
+    margin-bottom: 60px;
+    background-image: linear-gradient(rgba(252, 152, 195, 0.3), rgba(255, 255, 255, 0.3), rgba(136, 76, 210, 0.3));
+    border-radius: 10px;
+    z-index: 9;
+}
+
+.counter-section .counter-item {
+    text-align: center;
+    background: rgba(255, 255, 255, .5) !important;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+    object-fit: cover;
+    border-radius: 0 25% 0 25%;
+}
+
+.counter-section .counter-item .counter-content .svg-img {
+    position: absolute;
+    bottom: 0; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    margin-bottom: -50px; 
+    margin-left: -45px; 
+    transform: rotate(180deg);
+}
+
+.counter-section .counter-item .counter-quantity {
+    width: 110px;
+    height: 110px;
+    border-radius: 55px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bs-primary);
+}
+/*** Counter End ***/
+
+
+/*** Events Start ***/
+.gallery .tab-class .nav-item {
+    padding: 0 0 20px 0;
+}
+.gallery .tab-class .nav-item a.active {
+    background: var(--bs-primary) !important;
+}
+
+.gallery .tab-class .nav-item a.active span {
+    color: var(--bs-white) !important;
+}
+
+.gallery .gallery-img {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.gallery .gallery-img img {
+    transition: 0.5s;
+}
+
+.gallery .gallery-img:hover img {
+    transform: scale(1.3);
+}
+
+.gallery .gallery-img .gallery-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    transition: 0.5s;
+    opacity: 0;
+    z-index: 1;
+}
+
+.gallery .gallery-img .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.5s;
+    opacity: 0;
+    z-index: 2;
+    
+}
+
+.gallery .gallery-img:hover .gallery-overlay,
+.gallery .gallery-img:hover .search-icon {
+    opacity: 1;
+}
+/*** Events End ***/
+
+
+/*** Pricing Start ***/
+.pricing {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/appointment-background.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.pricing .pricing-item {
+    color: var(--bs-white);
+}
+
+.pricing .pricing-item .pricing-content {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.pricing .owl-carousel.pricing-carousel {
+    position: relative;
+}
+
+.pricing .owl-carousel.pricing-carousel .owl-nav {
+    position: absolute;
+    top: -60px;
+    right: 0;
+    display: flex;
+    font-size: 40px;
+    color: var(--bs-white);
+
+}
+
+.pricing .owl-carousel.pricing-carousel .owl-nav .owl-prev {
+    margin-right: 40px;
+}
+
+.pricing .owl-carousel.pricing-carousel .owl-nav .owl-prev,
+.pricing .owl-carousel.pricing-carousel .owl-nav .owl-next {
+    transition: 0.5s;
+}
+
+.pricing .owl-carousel.pricing-carousel .owl-nav .owl-prev:hover,
+.pricing .owl-carousel.pricing-carousel .owl-nav .owl-next:hover {
+    color: var(--bs-primary);
+}
+/*** Pricing End ***/
+
+/*** Team Start ***/
+.team .team-item {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.team .team-item .team-text {
+    background: var(--bs-primary);
+}
+
+.team .team-item .team-social {
+    position: absolute;
+    top: -180px; 
+    left: 20px; 
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.team .team-item:hover .team-social {
+    top: 20px; 
+    left: 20px;
+    opacity: 1;
+}
+
+.team .team-item .team-img {
+    position: relative;
+    width: 100%;
+}
+
+.team .team-item .team-img::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    transition: 0.5s ease;
+}
+
+.team .team-item:hover .team-img::after {
+    bottom: 0;
+    height: 100%;
+}
+
+.team .team-item .team-text {
+    transition: 0.5s;
+}
+
+.team .team-item:hover .team-text {
+    background: var(--bs-secondary);
+}
+/*** Team End ***/
+
+/*** testimonial Start ***/
+.testimonial {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/testimonial-bg.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.testimonial .testimonial-item {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.testimonial .owl-carousel.testimonial-carousel {
+    position: relative;
+}
+
+.testimonial .owl-carousel.testimonial-carousel .owl-nav {
+    position: absolute;
+    top: -60px;
+    right: 0;
+    display: flex;
+    font-size: 40px;
+    color: var(--bs-white);
+}
+
+.testimonial .owl-carousel.testimonial-carousel .owl-nav .owl-prev {
+    margin-right: 40px;
+}
+
+.testimonial .owl-carousel.testimonial-carousel .owl-nav .owl-prev,
+.testimonial .owl-carousel.testimonial-carousel .owl-nav .owl-next {
+    transition: 0.5s;
+}
+
+.testimonial .owl-carousel.testimonial-carousel .owl-nav .owl-prev:hover,
+.testimonial .owl-carousel.testimonial-carousel .owl-nav .owl-next:hover {
+    color: var(--bs-primary);
+}
+/*** testimonial end ***/
+
+/*** Contact Start ***/
+.contact {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/appointment-background.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.contact .contact-form {
+    background: rgba(255, 255, 255, 0.6);
+}
+/*** Contact End ***/
+
+/*** footer start ***/
+.footer {
+    background: var(--bs-dark);
+}
+
+.footer .footer-item a,
+.footer .footer-item p {
+    color: var(--bs-white);
+    line-height: 40px;
+    font-size: 17px;
+    transition: 0.5s;
+}
+
+.footer .footer-item a:hover {
+    letter-spacing: 2px;
+    color: var(--bs-primary) !important;
+}
+
+/*** Footer End ***/
+
+/*** copyright Start ***/
+.copyright {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--bs-dark) !important;
+}
+/*** copyright end ***/
+</style>
     <body>
 
         <!-- Spinner Start -->
@@ -75,7 +751,7 @@
                                 <a href="index.html" class="nav-item nav-link active">Accueil</a>
                                 <a href="about.html" class="nav-item nav-link">À propos</a>
                                 <a href="service.html" class="nav-item nav-link">Services</a>
-                                <a href="gallery.html" class="nav-item nav-link">Gallery</a>
+                                <a href="gallery.html" class="nav-item nav-link">Portfolio</a>
                                 <a href="contact.html" class="nav-item nav-link">Contact</a>
                             </div>
                             <div class="d-flex align-items-center flex-nowrap pt-xl-0">
@@ -109,220 +785,190 @@
         <!-- Modal Search End -->
 
 
-        <!-- Carousel Start -->
-        <div class="container-fluid carousel-header px-0">
-            <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-bs-target="#carouselId" data-bs-slide-to="0" class="active"></li>
-                    <li data-bs-target="#carouselId" data-bs-slide-to="1"></li>
-                    <li data-bs-target="#carouselId" data-bs-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner" role="listbox">
-                    <div class="carousel-item active">
-                        <img src="img/images (7).jpg" class="img-fluid" alt="Web Design">
-                        <div class="carousel-caption">
-                            <div class="p-3" style="max-width: 900px;">
-                                <h1 class="display-1 text-capitalize text-dark mb-3">Sites Vitrines Professionnels</h1>
-                                <p class="mx-md-5 fs-4 px-4 mb-5 text-dark">Créez votre présence en ligne avec des sites web modernes et performants</p>
-                                <div class="d-flex align-items-center justify-content-center">
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="img/11 (4).jpg" class="img-fluid" alt="Graphic Design">
-                        <div class="carousel-caption">
-                            <div class="p-3" style="max-width: 900px;">
-                                <h1 class="display-1 text-capitalize text-dark mb-3">Logos & Affiches Publicitaires</h1>
-                                <p class="mx-md-5 fs-4 px-5 mb-5 text-dark">Donnez une image forte à votre entreprise avec nos créations graphiques</p>
-                                <div class="d-flex align-items-center justify-content-center">
-                                   
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="img/11 (1).jpg" class="img-fluid" alt="Barcode Solutions">
-                        <div class="carousel-caption">
-                            <div class="p-3" style="max-width: 900px;">
-                                <h1 class="display-1 text-capitalize text-dark">Codes-barres & Étiquetage</h1>
-                                <p class="mx-md-5 fs-4 px-5 mb-5 text-dark">Gérez vos produits efficacement avec nos solutions de codification</p>
-                                <div class="d-flex align-items-center justify-content-center">
-                                    
-                                </div>
-                            </div>
+       <!-- Carousel Start -->
+<div class="container-fluid carousel-header px-0">
+    <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-bs-target="#carouselId" data-bs-slide-to="0" class="active"></li>
+            <li data-bs-target="#carouselId" data-bs-slide-to="1"></li>
+            <li data-bs-target="#carouselId" data-bs-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <!-- Slide 1 - Site Vitrine -->
+            <div class="carousel-item active">
+                <img src="img/img1.jpg" class="img-fluid" alt="Création de site vitrine">
+                <div class="carousel-caption">
+                    <div class="p-3" style="max-width: 900px;">
+                        <h1 class="display-1 text-capitalize text-dark mb-3">Sites Vitrines Professionnels</h1>
+                        <p class="mx-md-5 fs-4 px-4 mb-5 text-dark">Présentez votre entreprise en ligne avec un site web élégant et performant</p>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <a href="service.html#web" class="btn btn-primary btn-primary-outline-0 rounded-pill py-3 px-5 me-4">Nos réalisations</a>
                         </div>
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Précédent</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselId" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Suivant</span>
-                </button>
+            </div>
+            
+            <!-- Slide 2 - Affiches Publicitaires -->
+            <div class="carousel-item">
+                <img src="img/img2.webp" class="img-fluid" alt="Création d'affiches publicitaires">
+                <div class="carousel-caption">
+                    <div class="p-3" style="max-width: 900px;">
+                        <h1 class="display-1 text-capitalize text-dark mb-3">Affiches Publicitaires Impactantes</h1>
+                        <p class="mx-md-5 fs-4 px-5 mb-5 text-dark">Des designs percutants pour promouvoir vos événements et produits</p>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <a href="service.html#design" class="btn btn-primary btn-primary-outline-0 rounded-pill py-3 px-5 me-4">Voir nos créations</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 3 - Logos -->
+            <div class="carousel-item">
+                <img src="img/img3.jpg" class="img-fluid" alt="Création de logos">
+                <div class="carousel-caption">
+                    <div class="p-3" style="max-width: 900px;">
+                        <h1 class="display-1 text-capitalize text-dark">Identité Visuelle Unique</h1>
+                        <p class="mx-md-5 fs-4 px-5 mb-5 text-dark">Un logo memorable qui représente l'essence de votre marque</p>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <a href="service.html#logo" class="btn btn-primary btn-primary-outline-0 rounded-pill py-3 px-5 me-4">Nos designs</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- Carousel End -->
-
-
-     <!-- Services Start -->
-    <div class="container-fluid services py-5">
-        <div class="container py-5">
-            <div class="mx-auto text-center mb-5" style="max-width: 800px;">
-                <p class="fs-4 text-uppercase text-center text-primary">Nos Services</p>
-                <h1 class="display-3">Solutions Digitales & Graphiques</h1>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Précédent</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselId" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Suivant</span>
+        </button>
+    </div>
+</div>
+<!-- Carousel End -->
+ 
+  <!-- Services Start -->
+<div class="container-fluid services py-5">
+    <div class="container py-5">
+        <div class="mx-auto text-center mb-5" style="max-width: 800px;">
+            <p class="fs-4 text-uppercase text-center text-primary">Nos Services</p>
+            <h1 class="display-3">Solutions Créatives sur Mesure</h1>
+        </div>
+        <div class="row g-4">
+            <!-- Service 1 - Sites Vitrines avec QR Code -->
+            <div class="col-lg-4 col-md-6">
+                <div class="services-item bg-light rounded p-4 text-center">
+                    <div class="services-icon mb-4">
+                        <i class="fas fa-qrcode fa-4x text-primary"></i>
+                    </div>
+                    <h3>Sites Vitrines + QR Code</h3>
+                    <p class="mb-4">Création de sites web professionnels avec QR Code intégré pour un accès mobile instantané.</p>
+                
+              <a href="service.html#seo" class="btn btn-sm btn-primary rounded-pill">En savoir plus</a>
+                </div>
             </div>
-            <div class="row g-4">
-                <div class="col-lg-6">
-                    <div class="services-item bg-light border-4 border-end border-primary rounded p-4">
-                        <div class="row align-items-center">
-                            <div class="col-8">
-                                <div class="services-content text-end">
-                                    <h3>Création de Sites Web</h3>
-                                    <p>Sites vitrines, e-commerce et applications web sur mesure, optimisés pour tous les appareils.</p>
-                                    <a href="service.html#web" class="btn btn-sm btn-primary rounded-pill">En savoir plus</a>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="services-icon">
-                                    <i class="fas fa-laptop-code fa-4x text-primary"></i>
-                                </div>
-                            </div>
-                        </div>
+
+            <!-- Service 2 - Affiches Publicitaires -->
+            <div class="col-lg-4 col-md-6">
+                <div class="services-item bg-light rounded p-4 text-center">
+                    <div class="services-icon mb-4">
+                        <i class="fas fa-bullhorn fa-4x text-primary"></i>
                     </div>
+                    <h3>Affiches Publicitaires</h3>
+                    <p class="mb-4">Conception graphique d'affiches percutantes pour vos événements et campagnes marketing.</p>
+                   
+                <a href="service.html#seo" class="btn btn-sm btn-primary rounded-pill">En savoir plus</a>
                 </div>
-                <div class="col-lg-6">
-                    <div class="services-item bg-light border-4 border-start border-primary rounded p-4">
-                        <div class="row align-items-center">
-                            <div class="col-4">
-                                <div class="services-icon">
-                                    <i class="fas fa-palette fa-4x text-primary"></i>
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="services-content text-start">
-                                    <h3>Design Graphique</h3>
-                                    <p>Logos, chartes graphiques et supports de communication visuelle professionnels.</p>
-                                    <a href="service.html#design" class="btn btn-sm btn-primary rounded-pill">En savoir plus</a>
-                                </div>
-                            </div>
-                        </div>
+            </div>
+
+            <!-- Service 3 - Création de Logos -->
+            <div class="col-lg-4 col-md-6">
+                <div class="services-item bg-light rounded p-4 text-center">
+                    <div class="services-icon mb-4">
+                        <i class="fas fa-palette fa-4x text-primary"></i>
                     </div>
+                    <h3>Identité Visuelle</h3>
+                    <p class="mb-4">Création de logos uniques et chartes graphiques complètes pour votre marque.</p>
+                    
+                   <a href="service.html#seo" class="btn btn-sm btn-primary rounded-pill">En savoir plus</a>
                 </div>
-                <div class="col-lg-6">
-                    <div class="services-item bg-light border-4 border-end border-primary rounded p-4">
-                        <div class="row align-items-center">
-                            <div class="col-8">
-                                <div class="services-content text-end">
-                                    <h3>Référencement SEO</h3>
-                                    <p>Optimisation pour les moteurs de recherche pour améliorer votre visibilité en ligne.</p>
-                                    <a href="service.html#seo" class="btn btn-sm btn-primary rounded-pill">En savoir plus</a>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="services-icon">
-                                    <i class="fas fa-search fa-4x text-primary"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="services-item bg-light border-4 border-start border-primary rounded p-4">
-                        <div class="row align-items-center">
-                            <div class="col-4">
-                                <div class="services-icon">
-                                    <i class="fas fa-mobile-alt fa-4x text-primary"></i>
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="services-content text-start">
-                                    <h3>Applications Mobile</h3>
-                                    <p>Développement d'applications iOS et Android pour étendre votre présence mobile.</p>
-                                    <a href="service.html#mobile" class="btn btn-sm btn-primary rounded-pill">En savoir plus</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+        </div>
+
+      
                 </div>
             </div>
         </div>
     </div>
-    <!-- Services End -->
+</div>
+<!-- Services End -->
 
         
-        <!-- About Start -->
-    <div class="container-fluid about py-5">
-        <div class="container py-5">
-            <div class="row g-5 align-items-center">
-                <div class="col-lg-5">
-                    <div class="video">
-                        <img src="img/web-designer-tozeur.jpg" class="img-fluid rounded" alt="Freelance web designer Tozeur">
-                        <div class="position-absolute rounded border-5 border-top border-start border-white" style="bottom: 0; right: 0;">
-                            <img src="img/coding-work.jpg" class="img-fluid rounded" alt="Travail de développement web">
+       <!-- About Start -->
+<div class="container-fluid about py-5">
+    <div class="container py-5">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-5">
+                <img src="img/bella.jpg" class="img-fluid rounded" alt="Designer web et graphiste">
+            </div>
+            <div class="col-lg-7">
+                <p class="fs-4 text-uppercase text-primary">Notre Expertise</p>
+                <h1 class="display-4 mb-4">Création de Sites Vitrines & Design Graphique</h1>
+                <p class="mb-4">Spécialisés dans la conception de sites web vitrines et le design graphique, nous transformons vos idées en réalisations concrètes. Notre approche combine esthétique et fonctionnalité pour des résultats qui vous ressemblent.</p>
+                
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-laptop-code fa-3x text-primary me-4"></i>
+                            <div class="ms-4">
+                                <h5>Sites Vitrines</h5>
+                                <p class="mb-0">Designs modernes et responsive pour présenter votre activité</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-bullhorn fa-3x text-primary me-4"></i>
+                            <div class="ms-4">
+                                <h5>Affiches Pub</h5>
+                                <p class="mb-0">Support de communication visuelle percutants</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-7">
-                    <p class="fs-4 text-uppercase text-primary">À propos de moi</p>
-                    <h1 class="display-4 mb-4">Développeur Web & Designer Graphique Indépendant</h1>
-                    <p class="mb-4">Je suis un professionnel indépendant spécialisé dans la création de sites web et le design graphique, basé à Tozeur, Tunisie. Avec plusieurs années d'expérience, j'accompagne les entreprises et particuliers dans leur transformation digitale.</p>
-                    
-                    <div class="row g-4">
-                        <div class="col-md-6">
-                            <div class="d-flex align-items-center">
-                                <i class="fas fa-user-tie fa-3x text-primary me-4"></i>
-                                <div class="ms-4">
-                                    <h5>Approche Personnalisée</h5>
-                                    <p class="mb-0">Chaque projet est unique et bénéficie d'une attention particulière.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="d-flex align-items-center">
-                                <i class="fas fa-medal fa-3x text-primary me-4"></i>
-                                <div class="ms-4">
-                                    <h5>Expertise Technique</h5>
-                                    <p class="mb-0">Maîtrise des dernières technologies web et tendances design.</p>
-                                </div>
+                
+                <div class="row g-4 mt-2">
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-palette fa-3x text-primary me-4"></i>
+                            <div class="ms-4">
+                                <h5>Logos Uniques</h5>
+                                <p class="mb-0">Identité visuelle distinctive pour votre marque</p>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="row g-4 mt-2">
-                        <div class="col-md-6">
-                            <div class="d-flex align-items-center">
-                                <i class="fas fa-handshake fa-3x text-primary me-4"></i>
-                                <div class="ms-4">
-                                    <h5>Relation Client</h5>
-                                    <p class="mb-0">Écoute, conseil et suivi personnalisé tout au long du projet.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="d-flex align-items-center">
-                                <i class="fas fa-map-marker-alt fa-3x text-primary me-4"></i>
-                                <div class="ms-4">
-                                    <h5>Local mais Connecté</h5>
-                                    <p class="mb-0">Basé à Tozeur mais travaillant avec des clients partout en Tunisie et à l'international.</p>
-                                </div>
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-mobile-alt fa-3x text-primary me-4"></i>
+                            <div class="ms-4">
+                                <h5>Optimisation Mobile</h5>
+                                <p class="mb-0">Sites parfaitement adaptés aux smartphones et tablettes</p>
                             </div>
                         </div>
                     </div>
-                    
-                    <p class="my-4">Ma passion pour le web et le design me permet de créer des solutions à la fois esthétiques et fonctionnelles, parfaitement adaptées à vos besoins spécifiques.</p>
-                    <a href="about.html" class="btn btn-primary btn-primary-outline-0 rounded-pill py-3 px-5">En savoir plus sur mon parcours</a>
-                </div> 
-            </div>
+                </div>
+                
+                <p class="my-4">Chaque projet est l'occasion de créer quelque chose d'unique. Nous travaillons en étroite collaboration avec vous pour comprendre vos besoins et vos valeurs, afin de les traduire visuellement.</p>
+                <a href="about.html" class="btn btn-primary btn-primary-outline-0 rounded-pill py-3 px-5">Découvrez notre processus</a>
+            </div> 
         </div>
     </div>
-    <!-- About End -->
+</div>
+<!-- About End -->
 
 
- <!-- Gallery Start -->
+<!-- Gallery Start -->
 <div class="container-fluid gallery py-5">
     <div class="container py-5">
         <div class="text-center mx-auto mb-5" style="max-width: 800px;">
@@ -333,94 +979,154 @@
             <ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
                 <li class="nav-item">
                     <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill active" data-bs-toggle="pill" href="#tab-1">
-                        <span class="text-dark" style="width: 150px;">Tous Projets</span>
+                        <span class="text-dark" style="width: 150px;">Tous projets</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="d-flex py-2 mx-3 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-2">
-                        <span class="text-dark" style="width: 150px;">Sites Web</span>
+                        <span class="text-dark" style="width: 150px;">Site Vitrine</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-3">
-                        <span class="text-dark" style="width: 150px;">Logos</span>
+                        <span class="text-dark" style="width: 150px;">Logo</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4">
-                        <span class="text-dark" style="width: 150px;">Affiches</span>
+                        <span class="text-dark" style="width: 150px;">Affiche</span>
                     </a>
                 </li>
             </ul>
             <div class="tab-content">
+                <!-- Onglet 1 : Tous les projets -->
                 <div id="tab-1" class="tab-pane fade show p-0 active">
                     <div class="row g-4">
                         <div class="col-lg-12">
                             <div class="row g-4">
-                                <div class="col-lg-3">
+                                    <div class="col-lg-3">
                                     <div class="gallery-img">
-                                        <img class="img-fluid rounded w-100" src="img/website1.jpg" alt="Site vitrine restaurant">
+                                        <img class="img-fluid rounded w-100" src="img/site.png" alt="Site Vitrine">
                                         <div class="gallery-overlay p-4">
-                                            <h4 class="text-secondary">Site Restaurant</h4>
+                                            <h4 class="text-secondary">Site Vitrine</h4>
                                         </div>
                                         <div class="search-icon">
-                                            <a href="img/website1.jpg" data-lightbox="Gallery-1" class="my-auto"><i class="fas fa-search-plus btn-primary btn-primary-outline-0 rounded-circle p-3"></i></a>
+                                            <a href="img/site.png" data-lightbox="gallery-site" class="my-auto"><i class="fas fa-search-plus btn-primary btn-primary-outline-0 rounded-circle p-3"></i></a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                 <div class="col-lg-3">
                                     <div class="gallery-img">
-                                        <img class="img-fluid rounded w-100" src="img/logo1.jpg" alt="Logo entreprise">
+                                        <img class="img-fluid rounded w-100" src="img/ww.png" alt="Projet 1">
                                         <div class="gallery-overlay p-4">
-                                            <h4 class="text-secondary">Logo Société</h4>
+                                            <h4 class="text-secondary">Skin Care</h4>
                                         </div>
                                         <div class="search-icon">
-                                            <a href="img/logo1.jpg" data-lightbox="Gallery-2" class="my-auto"><i class="fas fa-search-plus btn-primary btn-primary-outline-0 rounded-circle p-3"></i></a>
+                                            <a href="img/ww.png" data-lightbox="gallery-all" class="my-auto"><i class="fas fa-search-plus btn-primary btn-primary-outline-0 rounded-circle p-3"></i></a>
+                                        </div>
+                                    </div>
+                                </div> <div class="col-lg-3">
+                                    <div class="gallery-img">
+                                        <img class="img-fluid rounded w-100" src="img/Skincare Product Presentation.png" alt="Projet 1">
+                                        <div class="gallery-overlay p-4">
+                                            <h4 class="text-secondary">Affiche</h4>
+                                        </div>
+                                        <div class="search-icon">
+                                            <a href="img/Skincare Product Presentation.png" data-lightbox="gallery-all" class="my-auto"><i class="fas fa-search-plus btn-primary btn-primary-outline-0 rounded-circle p-3"></i></a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
-                                    <div class="gallery-img">
-                                        <img class="img-fluid rounded w-100" src="img/poster1.jpg" alt="Affiche publicitaire">
-                                        <div class="gallery-overlay p-4">
-                                            <h4 class="text-secondary">Affiche Événement</h4>
-                                        </div>
-                                        <div class="search-icon">
-                                            <a href="img/poster1.jpg" data-lightbox="Gallery-3" class="my-auto"><i class="fas fa-search-plus btn-primary btn-primary-outline-0 rounded-circle p-3"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="gallery-img">
-                                        <img class="img-fluid rounded w-100" src="img/website2.jpg" alt="Site e-commerce">
-                                        <div class="gallery-overlay p-4">
-                                            <h4 class="text-secondary">Boutique en ligne</h4>
-                                        </div>
-                                        <div class="search-icon">
-                                            <a href="img/website2.jpg" data-lightbox="Gallery-4" class="my-auto"><i class="fas fa-search-plus btn-primary btn-primary-outline-0 rounded-circle p-3"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <!-- Répétez pour les autres images (gallery-2.jpg à gallery-8.jpg) -->
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Autres onglets avec le même principe -->
+                
+                <!-- Onglet 2 : Site Vitrine -->
+                <div id="tab-2" class="tab-pane fade show p-0">
+                    <div class="row g-4">
+                        <div class="col-lg-12">
+                            <div class="row g-4">
+                                <!-- Exemple d'un site vitrine -->
+                                <div class="col-lg-3">
+                                    <div class="gallery-img">
+                                        <img class="img-fluid rounded w-100" src="img/site.png" alt="Site Vitrine">
+                                        <div class="gallery-overlay p-4">
+                                            <h4 class="text-secondary">Site Vitrine</h4>
+                                        </div>
+                                        <div class="search-icon">
+                                            <a href="img/site.png" data-lightbox="gallery-site" class="my-auto"><i class="fas fa-search-plus btn-primary btn-primary-outline-0 rounded-circle p-3"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Ajoutez d'autres sites vitrine si nécessaire -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Onglet 3 : Logo -->
+                <div id="tab-3" class="tab-pane fade show p-0">
+                    <div class="row g-4">
+                        <div class="col-lg-12">
+                            <div class="row g-4">
+                                <!-- Exemple d'un logo -->
+                                <div class="col-lg-3">
+                                    <div class="gallery-img">
+                                        <img class="img-fluid rounded w-100" src="img/ww.png" alt="Logo">
+                                        <div class="gallery-overlay p-4">
+                                            <h4 class="text-secondary">Logo</h4>
+                                        </div>
+                                        <div class="search-icon">
+                                            <a href="img/ww.png" data-lightbox="gallery-logo" class="my-auto"><i class="fas fa-search-plus btn-primary btn-primary-outline-0 rounded-circle p-3"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Ajoutez d'autres logos si nécessaire -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Onglet 4 : Affiche -->
+                <div id="tab-4" class="tab-pane fade show p-0">
+                    <div class="row g-4">
+                        <div class="col-lg-12">
+                            <div class="row g-4">
+                                <!-- Exemple d'une affiche -->
+                                <div class="col-lg-3">
+                                    <div class="gallery-img">
+                                        <img class="img-fluid rounded w-100" src="img/Skincare Product Presentation.png" alt="Affiche">
+                                        <div class="gallery-overlay p-4">
+                                            <h4 class="text-secondary">Affiche</h4>
+                                        </div>
+                                        <div class="search-icon">
+                                            <a href="img/Skincare Product Presentation.png" data-lightbox="gallery-affiche" class="my-auto"><i class="fas fa-search-plus btn-primary btn-primary-outline-0 rounded-circle p-3"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Ajoutez d'autres affiches si nécessaire -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 <!-- Gallery End -->
- 
-<div class="text-center my-5">
-    <h3>Téléchargez notre QR Code</h3>
-    <p>Scannez ce code pour accéder directement à Webella</p>
-    <img src="chemin/vers/votre-qrcode.png" alt="QR Code pour Webella" width="200">
-    <br>
-    <a href="chemin/vers/votre-qrcode.png" download="Webella-QRCode.png" class="btn btn-primary mt-3">
-        <i class="fas fa-download"></i> Télécharger le QR Code
-    </a>
+ <div class="text-center my-5">
+    <h3>QR Code d'accès</h3>
+    <p>Scannez ce code pour accéder directement à notre site</p>
+    
+    <!-- Conteneur du QR Code -->
+    <div id="qrcode-container">
+        <img src="img/code.png" alt="QR Code pour Webella" id="qrcode-image" class="img-fluid" style="max-width: 200px;">
+    </div>
+
 </div>
+
+
 <!-- Contact Start -->
 <div class="container-fluid py-5">
     <div class="container py-5">
@@ -432,7 +1138,7 @@
                             <i class="fas fa-map-marker-alt fa-2x text-primary me-4"></i>
                             <div>
                                 <h4>Adresse</h4>
-                                <p class="mb-0">Dgech, Touzer, Tunisie</p>
+                                <p class="mb-0">Dgech, Touzer </p>
                             </div>
                         </div>
                     </div>
@@ -498,7 +1204,7 @@
                         <div class="d-flex flex-column">
                             <a href="index.html" class="mb-2 text-white"><i class="fas fa-angle-right me-2"></i> Accueil</a>
                             <a href="about.html" class="mb-2 text-white"><i class="fas fa-angle-right me-2"></i> À propos</a>
-                            <a href="gallery.html" class="mb-2 text-white"><i class="fas fa-angle-right me-2"></i> Gallery</a>
+                            <a href="gallery.html" class="mb-2 text-white"><i class="fas fa-angle-right me-2"></i> Portfolio</a>
                             <a href="contact.html" class="mb-2 text-white"><i class="fas fa-angle-right me-2"></i> Contact</a>
                         </div>
                     </div>
